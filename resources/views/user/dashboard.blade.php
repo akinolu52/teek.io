@@ -82,8 +82,6 @@
 
                             <form name="todo-form" id="todo-form" class="m-t-20">
                                 {{ csrf_field() }}
-                                {{--<input type="hidden" id="todo-user-url" data-value="{{ route('task.user') }}">
-                                <input type="hidden" id="todo-url" data-value="{{ route('task.store') }}">--}}
                                 <div class="row">
                                     <div class="col-sm-12 form-group todo-inputbar">
                                         <label>Name</label>
@@ -119,7 +117,7 @@
                 </div>
             </div> <!-- end col -->
 
-            <div class="col-lg-6">
+            {{--<div class="col-lg-6">
 
                 <!-- Chat -->
                 <div class="portlet"><!-- /primary heading -->
@@ -210,40 +208,10 @@
                         </div>
                     </div>
                 </div> <!-- end Chat -->
-            </div> <!-- end col-->
+            </div>--}} <!-- end col-->
+        {{--</div>
 
-            {{--<div class="col-lg-7">
-                <div class="portlet"><!-- /primary heading -->
-                    <div class="portlet-heading">
-                        <h3 class="portlet-title text-dark text-uppercase">
-                            Weekly Sales Report
-                        </h3>
-                        <div class="portlet-widgets">
-                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                            <span class="divider"></span>
-                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet1"><i class="ion-minus-round"></i></a>
-                            <span class="divider"></span>
-                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
-                        </div>
-                        <div class="clearfix"></div>
-                        <input type="hidden" id="weeklyDataUrl" data-value="{{ route('task.weeklyChart') }}">
-                    </div>
-                    <div id="portlet1" class="panel-collapse collapse in">
-                        <div class="portlet-body">
-                            <div id="morris-bar-example" style="height: 320px;"></div>
-
-
-                        </div>
-                    </div>
-                </div> <!-- /Portlet -->
-
-            </div>
-
-
-        </div> <!-- End row -->--}}
-        </div>
-
-        <div class="row">
+        <div class="row">--}}
             <div class="col-lg-6">
                 <div class="portlet"><!-- /primary heading -->
                     <div class="portlet-heading">
@@ -259,25 +227,51 @@
                         </div>
                         <div class="clearfix"></div>
                         <input type="hidden" id="weeklyDataUrl" data-value="{{ route('task.weeklyChart') }}">
+                        <input type="hidden" id="yearlyDataUrl" data-value="{{ route('task.yearlyChart') }}">
                     </div>
                     <div id="portlet1" class="panel-collapse collapse in">
                         <div class="portlet-body">
-                            <div id="no-weekly-data">
-
-                            </div>
+                            <div id="no-weekly-data"></div>
 
                             <div id="morris-bar-example" style="height: 320px;"></div>
                         </div>
                     </div>
                 </div> <!-- /Portlet -->
+                <div class="tile-stats white-bg">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="status m-b-15">
+                                <h3 class="m-t-15">Task summary</h3>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div style="background: #1a2942; height: 20px; width: 20px;" class="m-l-15">&nbsp;</div>Pending
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="background: #f13c6e; height: 20px; width: 20px;" class="m-l-15">&nbsp;</div>Ongoing
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="background: #3bc0c3; height: 20px; width: 20px;" class="m-l-15">&nbsp;</div>Complete
+                                    </div>
 
+                                </div>
+                                <span id="pendingCount" data-value="{{ count(Auth::user()->task->where('status', 'pending')) }}"></span>
+                                <span id="ongoingCount" data-value="{{ count(Auth::user()->task->where('status', 'ongoing')) }}"></span>
+                                <span id="completeCount" data-value="{{ count(Auth::user()->task->where('status', 'complete')) }}"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 m-t-20">
+                            <span class="sparkpie-big"><canvas width="98" height="50" style="display: inline-block; width: 98px; height: 50px; vertical-align: top;"></canvas></span>
+                        </div>
+                    </div>
+                </div>
             </div> <!-- end col -->
-
-            <div class="col-lg-5" style="visibility: hidden;">
+        </div>
+        <div class="row">
+            <div class="col-lg-6" >
                 <div class="portlet"><!-- /primary heading -->
                     <div class="portlet-heading">
                         <h3 class="portlet-title text-dark text-uppercase">
-                            Yearly Sales Report
+                            Monthly Task Report
                         </h3>
                         <div class="portlet-widgets">
                             <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
@@ -294,7 +288,6 @@
                         </div>
                     </div>
                 </div> <!-- /Portlet -->
-
             </div>
         </div> <!-- End row -->
 
@@ -328,11 +321,7 @@
     <script src="{{ asset('auth/assets/sparkline-chart/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('auth/assets/sparkline-chart/chart-sparkline.js') }}"></script>
 
-    <!-- sweet alerts -->
-    <script src="{{ asset('auth/assets/sweet-alert/sweet-alert.min.js') }}"></script>
-    <script src="{{ asset('auth/assets/sweet-alert/sweet-alert.init.js') }}"></script>
-    <!-- Todo -->
-    <script src="{{ asset('auth/js/jquery.todo.js') }}"></script>
+
 
     <!-- Chat -->
     {{--<script src="{{ asset('auth/js/jquery.chat.js') }}"></script>--}}

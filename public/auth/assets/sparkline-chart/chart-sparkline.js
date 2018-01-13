@@ -8,7 +8,11 @@
 !function($) {
     "use strict";
 
-    var Sparkline = function() {};
+    var Sparkline = function() {
+        this.$pendingCount = $("#pendingCount").data("value")
+        this.$ongoingCount = $("#ongoingCount").data("value")
+        this.$completeCount = $("#completeCount").data("value")
+    };
 
     //
     Sparkline.prototype.init = function() {
@@ -78,11 +82,12 @@
                 borderColor: '#00007f'
             });
             // Pie charts
-            $('.sparkpie-big').sparkline([3, 4, 1, 2], {
+            $('.sparkpie-big').sparkline([this.$pendingCount, this.$ongoingCount, this.$completeCount], {
+                // [3, 4, 1/*, 2*/], {
                 type: 'pie',
                 width: '100%',
                 height: '50',
-                sliceColors: ['#1a2942', '#f13c6e', '#3bc0c3', '#dcdcdc'],
+                sliceColors: ['#1a2942', '#f13c6e', '#3bc0c3'/*, '#dcdcdc'*/],
                 offset: 0,
                 borderWidth: 0,
                 borderColor: '#00007f'

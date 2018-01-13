@@ -14,15 +14,7 @@ class Uploads
 
     public function getName()
     {
-//        return $this->name;
-//        if($this->base_url === "http://www.teek.sstudio.io" or $this->base_url === "http://teek.sstudio.io") {
-////            $this->path = substr(public_path(), 0, 16).'public_html/teek/uploads/';
-//            return asset('/uploads/'.$this->name);
-//        }
-//        else {
-            return asset('/uploads/'.$this->name);
-//        }
-//        return $this->path;
+        return asset('/uploads/'.$this->name);
     }
 
     public function setName()
@@ -32,15 +24,15 @@ class Uploads
 
     public function path()
     {
-        if($this->base_url === "http://www.teek.sstudio.io" or $this->base_url === "http://teek.sstudio.io") {
-            $this->path = substr(public_path(), 0, 16).'public_html/teek/uploads/';
+        if($this->base_url === "http://www.teek.sstudio.io" or $this->base_url === "http://teek.sstudio.io" or $this->base_url === "http://teek.sstudio.io/index.php" or $this->base_url === "http://www.teek.sstudio.io/index.php") {
+            $this->path = substr(public_path(), 0, 15).'teek.sstudio.io/uploads/';
         }
         else {
             $this->path = public_path().'/uploads/';
         }
     }
 
-    public function upload($resource, $type = 'image') {
+    public function upload($resource) {
         $this->setName();
         $this->path();
 

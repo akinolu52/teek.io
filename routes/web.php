@@ -80,6 +80,11 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'TaskController@weeklyChart'
         ]);
 
+        Route::get('yearlyChart', [
+            'as' => 'task.yearlyChart',
+            'uses' => 'TaskController@yearlyChart'
+        ]);
+
         Route::get('calendarChart', [
             'as' => 'task.calendar',
             'uses' => 'TaskController@calendarChart'

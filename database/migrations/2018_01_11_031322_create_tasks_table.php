@@ -19,6 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('end_date')->nullable();
+            $table->integer('month');
             /*pending, ongoing, complete(done = true)*/
             $table->string('status')->default('pending');
             $table->string('done')->default('false');

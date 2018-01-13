@@ -2,12 +2,13 @@
 
 namespace Teek\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Support\Facades\Auth;
 use Teek\Notify;
 use Teek\Task;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Mail\Mailer;
-use Teek\User;
+use Illuminate\Support\Facades\Session;
 
 class TaskController extends Controller
 {
@@ -43,11 +44,12 @@ class TaskController extends Controller
         $task = Task::create([
             'user_id' => Auth::id(),
             'title'     => $request->title,
+            'month' => date('n'),
             'description' => $request->description,
             'end_date'     => $request->edate,
         ]);
         $notify = new NotifyController();
-        //        'user_id', 'action', 'message', 'read', 'for'
+
         $request->message = Auth::user()->name." created a task!";
         $request->action = 'user';
         $notify->store($request);
@@ -126,7 +128,57 @@ class TaskController extends Controller
             );
         }
         return response()->json(($res));
+    }
 
+    public function yearlyChart()
+    {
+//        { y: '2017-01', a: 75,  b: 65 },
+//        { y: '2017-02', a: 20,  b: 40 },
+//        { y: '2017-03', a: 15,  b: 65 },
+//        { y: '2017-04', a: 120, b: 90 },
+//        { y: '2017-05', a: 30,  b: 40 },
+//        { y: '2017-06', a: 45,  b: 65 },
+//        { y: '2017-07', a: 150, b: 90 },
+//        { y: '2017-08', a: 60,  b: 40 },
+//        { y: '2017-09', a: 74,  b: 65 },
+//        { y: '2017-10', a: 130, b: 92},
+//        { y: '2017-11', a: 250, b: 52},
+//        { y: '2017-12', a: 190, b: 80}
+        $results = \DB::table('tasks')
+            ->selectRaw('count(*) as task, extract(month from tasks.created_at) as m')
+//            ->leftjoin('user', 'message.user_id', '=', 'user.id')
+            ->where('user_id', Auth::id())
+            ->groupBy('m')
+            ->pluck('task', 'm');
+        $months = array_replace(array_fill_keys(range(1, 12), 0), $results->all());
+
+        $res = [];
+
+        foreach ($months as $k => $month) {
+
+//            echo $k < 10 ? date('Y').'-0'.$k : date('Y').'-'.$k ;
+//            echo "\n";
+            $pendingTask = count(Task::where([
+                ['month', $k],
+                ['status', 'pending'],
+                ['user_id', Auth::id()],
+            ])->get());
+
+            $completedTask = count(Task::where([
+                ['month', $k],
+                ['status', 'complete'],
+                ['user_id', Auth::id()],
+            ])->get());
+
+            $res[] = array(
+                "y" => $k < 10 ? date('Y').'-0'.$k : date('Y').'-'.$k ,
+                "b" => $pendingTask ,
+                "c" => $completedTask
+            );
+
+        }
+
+        return response()->json(($res));
     }
 
     public function assign(Request $request)
@@ -176,37 +228,27 @@ class TaskController extends Controller
         echo true;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Teek\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Task $task)
     {
-        //
+        return view('user.task.edit')->with([
+            'task' =>$task
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Teek\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Task $task)
     {
-        //
+//        dd($request->all());
+        $task->update($request->all());
+
+        Session::flash('message', 'Task updated!');
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Teek\Task  $task
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+
+        Session::flash('message', 'Task deleted!');
+        return redirect()->back();
     }
 }

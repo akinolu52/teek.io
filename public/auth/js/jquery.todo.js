@@ -77,19 +77,20 @@
     },
     //adds new todo
     TodoApp.prototype.addTodo = function(inputNumber) {
-        // console.log(this.$todoForm.serializeArray());
-        // console.log(this.$todoForm2.serializeArray());
+        console.log(inputNumber);
+        console.log(this.$todoForm.serializeArray());
+
+        // passData =
         var that = this;
         $.ajax({
             method: 'post',
             url: this.$todoUrl,
             // data: this.$todoForm.serializeArray(),
-            data: inputNumber === 1 ? this.$todoForm.serializeArray() :this.$todoForm2.serializeArray(),
+            data: inputNumber == 1 ? this.$todoForm.serializeArray() :this.$todoForm2.serializeArray(),
             async: true,
             success: function(response){
                 // this.$todoData.push({'id': this.$todoData.length, 'text': todoText, 'done': false});
                 that.$todoData.push(response);
-                // this.$todoForm.reset
                 //regenerate list
                 $(that).find("input").val("");
                 that.generate();
