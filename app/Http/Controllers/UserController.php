@@ -75,13 +75,6 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        /*$this->validate($request, [
-            'name' => 'required',
-            'phone' => 'required|regex:/(0)[0-9]{10}/',
-            'email' => 'required|email',
-        ]);*/
-
-//        dd($request->all());
         if ($request->has('avatar')) {
 
             $upload = new Uploads();

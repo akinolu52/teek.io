@@ -83,7 +83,15 @@
                                 <div class="profile-desk">
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <h1>{{ Auth::user()->name }}</h1>
+                                            <div class="img-wrapper pull-left m-r-15">
+                                                @if(Auth::user()->avatar)
+                                                    <img class="img-circle preview_image pointer" title="Click to change picture" onclick="javascript:changeProfile()" src="{{ Auth::user()->avatar }}" style="width:100px">
+                                                @else
+                                                    <img class="preview_image img-circle pointer" title="Click to change picture" onclick="javascript:changeProfile()" style="width:100px" src="data:image/png;base64,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">
+                                                @endif
+                                            </div>
+
+                                            <h1 style="margin-top: 20px;">{{ Auth::user()->name }}</h1>
                                             <span class="designation">{{ Auth::user()->email }}</span>
                                         </div>
                                         <div class="col-sm-6 pointer text-right">
@@ -307,7 +315,7 @@
 
             });
         });
-        function changeProfile() {
+        /*function changeProfile() {
             $('#file').click();
         }
         $('#file').change(function () {
@@ -343,6 +351,6 @@
                     $('.preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
                 }
             });
-        }
+        }*/
     </script>
 @endsection
