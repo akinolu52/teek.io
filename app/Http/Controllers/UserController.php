@@ -17,6 +17,11 @@ class UserController extends Controller
         return view('auth.register');
     }
 
+    public static function numHash()
+    {
+        return (((0x0000FFFF & Auth::id()) << 16) + ((0xFFFF0000 & Auth::id()) >> 16));
+    }
+
     public function postRegister(Request $request)
     {
         $this->validate($request, [

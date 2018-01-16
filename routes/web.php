@@ -142,7 +142,7 @@ Route::group(['middleware' => 'auth'], function () {
             'task' => 'TaskController',
         ]);
 
-        Route::get('/{name?}', [
+        Route::get('/{id}', [
             'as' => 'user.profile',
             'uses' => 'UserController@profile'
         ]);

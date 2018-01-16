@@ -139,12 +139,14 @@
                                             <tr>
                                                 <td><b>Password</b></td>
                                                 <td>
+                                                    <span class="ng-binding">********</span>
                                                     <input type="password" class="ng-input form-control" name="password" id="profilePassword" placeholder="Enter Password">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td><b>Retype Password</b></td>
                                                 <td>
+                                                    <span class="ng-binding">********</span>
                                                     <input type="password" class="ng-input form-control" name="confirm" id="profileConfirm" placeholder="Enter Password">
                                                     <span id="helpRetype" class="help-block text-danger">Incorrect password!</span>
                                                 </td>

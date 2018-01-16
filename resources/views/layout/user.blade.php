@@ -1,3 +1,4 @@
+<?php $hashId = \Teek\Http\Controllers\UserController::numHash(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
     <title>Teek - @yield('title')</title>
 
     <!-- Google-Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,700,900,400italic'
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,700,900,400italic'
           rel='stylesheet'>
 
     <!-- Bootstrap core CSS -->
@@ -69,7 +70,7 @@
             @if(Auth::user()->role == 'user')
                 <li><a href="{{ route('user.dashboard') }}"><i class="ion-home"></i> <span
                                 class="nav-label">Dashboard</span></a>
-                <li><a href="{{ route('user.profile', urlencode(strtolower(Auth::user()->name))) }}"><i
+                <li><a href="{{ route('user.profile', $hashId) }}"><i
                                 class="ion-android-user-menu"></i> <span class="nav-label">Profile</span></a>
                 </li>
             @else
@@ -202,8 +203,10 @@
                 </a>
                 <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003"
                     style="overflow: hidden; outline: none;">
-                    <li><a href="javascript:changeProfile()"><i class="ion-edit"></i> Change Pic</a></li>
-                    <li><a href="{{ route('user.profile') }}"><i class="fa fa-briefcase"></i>Profile</a></li>
+                    @if (\Route::current()->getName() == 'user.profile')
+                        <li><a href="javascript:changeProfile()"><i class="ion-edit"></i> Change Pic</a></li>
+                    @endif
+                    <li><a href="{{ route('user.profile', $hashId) }}"><i class="fa fa-briefcase"></i>Profile</a></li>
                     <li>
                         <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();document.getElementById('logout-form2').submit();">
