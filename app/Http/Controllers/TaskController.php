@@ -103,12 +103,17 @@ class TaskController extends Controller
 
     public function weeklyChart()
     {
-        $monday = date('Y-m-d 00:00:00', strtotime("next Monday - 1week "));
-        $sunday = date('Y-m-d 00:00:00', strtotime("next Monday - 1week + 6days"));
+        $sunday = date('Y-m-d 00:00:00', strtotime("last Sunday "));
+        // echo "<br>";
+        $saturday = date('Y-m-d 00:00:00', strtotime("this Saturday"));
+
+
+        // echo $monday = date('Y-m-d 00:00:00', strtotime("next Monday - 1week "));
+        // echo $sunday = date('Y-m-d 00:00:00', strtotime("next Monday - 1week + 6days"));
 
         $tasks = Task::where([
-            ['created_at', '>=', $monday],
-            ['created_at', '<=', $sunday],
+            ['created_at', '>=', $sunday],
+            ['created_at', '<=', $saturday],
             ['user_id', Auth::id()]
         ])->get();
 
@@ -116,6 +121,7 @@ class TaskController extends Controller
             return $item['created_at']->format('l');
         });
         $tasks->toArray();
+
 
         $res = [];
         foreach ($tasks as $task) {
@@ -192,7 +198,7 @@ class TaskController extends Controller
             'user_id' => Auth::id(),
             'action'     => 'assistant',
             'for'     => $task->user_id,
-            'message'     => 'You task have been assigned',
+            'message'     => 'Your task have been assigned',
         ]);
 
         /*$user = User::find($task->user_id);
@@ -216,7 +222,7 @@ class TaskController extends Controller
             'user_id' => Auth::id(),
             'action'     => 'assistant',
             'for'     => $task->user_id,
-            'message'     => 'You task have been completed',
+            'message'     => 'Your task have been completed',
         ]);
 
         /*$user = User::find($task->user_id);
@@ -233,6 +239,25 @@ class TaskController extends Controller
         return view('user.task.edit')->with([
             'task' =>$task
         ]);
+    }
+
+    public function undone(Request $request, Task $task)
+    {
+        $task->update([
+            'status' => 'ongoing',
+            'done' => 'false'
+        ]);
+
+
+        Notify::create([
+            'user_id' => Auth::id(),
+            'action'     => 'assistant',
+            'for'     => $task->user_id,
+            'message'     => 'This task needs review!',
+        ]);
+
+        Session::flash('message', 'Task updated!');
+        return redirect()->back();
     }
 
     public function update(Request $request, Task $task)

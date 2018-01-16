@@ -117,101 +117,101 @@
                 </div>
             </div> <!-- end col -->
 
-            {{--<div class="col-lg-6">
+        {{--<div class="col-lg-6">
 
-                <!-- Chat -->
-                <div class="portlet"><!-- /primary heading -->
-                    <div class="portlet-heading">
-                        <h3 class="portlet-title text-dark text-uppercase">
-                            Chat
-                        </h3>
-                        <div class="portlet-widgets">
-                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                            <span class="divider"></span>
-                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet-3"><i class="ion-minus-round"></i></a>
-                            <span class="divider"></span>
-                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
-                        </div>
-                        <div class="clearfix"></div>
+            <!-- Chat -->
+            <div class="portlet"><!-- /primary heading -->
+                <div class="portlet-heading">
+                    <h3 class="portlet-title text-dark text-uppercase">
+                        Chat
+                    </h3>
+                    <div class="portlet-widgets">
+                        <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                        <span class="divider"></span>
+                        <a data-toggle="collapse" data-parent="#accordion1" href="#portlet-3"><i class="ion-minus-round"></i></a>
+                        <span class="divider"></span>
+                        <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
                     </div>
-                    <div id="portlet-3" class="panel-collapse collapse in">
-                        <input type="hidden" data-value="{{ Auth::user()->name }}" id="chat-user">
-                        <div class="portlet-body">
-                            <div class="chat-conversation">
-                                <ul class="conversation-list nicescroll">
-                                    <li class="clearfix">
-                                        <div class="chat-avatar">
-                                            <img src="img/avatar-2.jpg" alt="male">
-                                            <i>10:00</i>
-                                        </div>
-                                        <div class="conversation-text">
-                                            <div class="ctext-wrap">
-                                                <i>John Deo</i>
-                                                <p>
-                                                    Hello!
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix odd">
-                                        <div class="chat-avatar">
-                                            <img src="img/avatar-3.jpg" alt="Female">
-                                            <i>10:01</i>
-                                        </div>
-                                        <div class="conversation-text">
-                                            <div class="ctext-wrap">
-                                                <i>Smith</i>
-                                                <p>
-                                                    Hi, How are you? What about our next meeting?
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix">
-                                        <div class="chat-avatar">
-                                            <img src="img/avatar-2.jpg" alt="male">
-                                            <i>10:01</i>
-                                        </div>
-                                        <div class="conversation-text">
-                                            <div class="ctext-wrap">
-                                                <i>John Deo</i>
-                                                <p>
-                                                    Yeah everything is fine
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="clearfix odd">
-                                        <div class="chat-avatar">
-                                            <img src="img/avatar-3.jpg" alt="male">
-                                            <i>10:02</i>
-                                        </div>
-                                        <div class="conversation-text">
-                                            <div class="ctext-wrap">
-                                                <i>Smith</i>
-                                                <p>
-                                                    Wow that's great
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="row">
-                                    <div class="col-xs-9 chat-inputbar">
-                                        <input type="text" class="form-control chat-input" placeholder="Enter your text">
+                    <div class="clearfix"></div>
+                </div>
+                <div id="portlet-3" class="panel-collapse collapse in">
+                    <input type="hidden" data-value="{{ Auth::user()->name }}" id="chat-user">
+                    <div class="portlet-body">
+                        <div class="chat-conversation">
+                            <ul class="conversation-list nicescroll">
+                                <li class="clearfix">
+                                    <div class="chat-avatar">
+                                        <img src="img/avatar-2.jpg" alt="male">
+                                        <i>10:00</i>
                                     </div>
-                                    <div class="col-xs-3 chat-send">
-                                        <button type="submit" class="btn btn-info">Send</button>
+                                    <div class="conversation-text">
+                                        <div class="ctext-wrap">
+                                            <i>John Deo</i>
+                                            <p>
+                                                Hello!
+                                            </p>
+                                        </div>
                                     </div>
+                                </li>
+                                <li class="clearfix odd">
+                                    <div class="chat-avatar">
+                                        <img src="img/avatar-3.jpg" alt="Female">
+                                        <i>10:01</i>
+                                    </div>
+                                    <div class="conversation-text">
+                                        <div class="ctext-wrap">
+                                            <i>Smith</i>
+                                            <p>
+                                                Hi, How are you? What about our next meeting?
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <div class="chat-avatar">
+                                        <img src="img/avatar-2.jpg" alt="male">
+                                        <i>10:01</i>
+                                    </div>
+                                    <div class="conversation-text">
+                                        <div class="ctext-wrap">
+                                            <i>John Deo</i>
+                                            <p>
+                                                Yeah everything is fine
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="clearfix odd">
+                                    <div class="chat-avatar">
+                                        <img src="img/avatar-3.jpg" alt="male">
+                                        <i>10:02</i>
+                                    </div>
+                                    <div class="conversation-text">
+                                        <div class="ctext-wrap">
+                                            <i>Smith</i>
+                                            <p>
+                                                Wow that's great
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="row">
+                                <div class="col-xs-9 chat-inputbar">
+                                    <input type="text" class="form-control chat-input" placeholder="Enter your text">
+                                </div>
+                                <div class="col-xs-3 chat-send">
+                                    <button type="submit" class="btn btn-info">Send</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> <!-- end Chat -->
-            </div>--}} <!-- end col-->
-        {{--</div>
+                </div>
+            </div> <!-- end Chat -->
+        </div>--}} <!-- end col-->
+            {{--</div>
 
-        <div class="row">--}}
+            <div class="row">--}}
             <div class="col-lg-6">
                 <div class="portlet"><!-- /primary heading -->
                     <div class="portlet-heading">
@@ -230,14 +230,47 @@
                         <input type="hidden" id="yearlyDataUrl" data-value="{{ route('task.yearlyChart') }}">
                     </div>
                     <div id="portlet1" class="panel-collapse collapse in">
-                        <div class="portlet-body">
-                            <div id="no-weekly-data"></div>
+                        <div class="portlet-body morris-bar-container">
+                            <div id="no-weekly-data" class="text-center">
+                                <div class="portlet-body" style="margin-bottom: 50px;">
+                                    <h2 class="p-t-0">
+                                        No task Yet
+                                    </h2>
+                                    <img style="width: 150px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGrSURBVHhe7doxahtRFIZRQdIEAiGdIWWKLCApXLh05wU5O8harDIajYqRPIXB27LJ8Jp7GV6n4ULOB3/3xC2OytlJkiRJ+q96enr9NAwvX7faPM8f22mtdTie/wzj5W2r/R2nu3ZaawEpFpBiASkWkGIBKRaQYgEpFpBiASkWkGIBKRaQYgEpFpBiASkWkGIBKRaQYgEpFpBiASkWkGIBKVY5kH9f0g2n6X6rHY/zr3a6ROVApmn6svbDq+14eWmnSwQECJBeQIAA6QUECJBeQIAA6QUECJBeQIAA6QUECJBeQIAA6QUECJBeQIAA6QUkgYzj5fthPD9utXGcb9vpJSAJZDg9P6y+u95+t9NLQIAASQMSBgRIGpAwIEDSgIQBAZIGJAwIkDQgYUCApAEJAwIkDUgYECBpQMKAAEkDEgYESBqQMCBA0oCEAQGSBiQMCJA0IGFAgKQBCQMCJA1IGBAgaUDCgABJAxIGBEgakDAgQNKAhAEBkgYkDAiQtNog+/3+wzA8/9xqp9PlRzu9tPwhVt5db/NNO710OJy/rb+7zvbz/Lmdbu127zM+qfFLCJzWAAAAAElFTkSuQmCC">
+                                </div>
+                            </div>
 
                             <div id="morris-bar-example" style="height: 320px;"></div>
                         </div>
                     </div>
                 </div> <!-- /Portlet -->
-                <div class="tile-stats white-bg">
+            </div> <!-- end col -->
+        </div>
+        <div class="row">
+            <div class="col-lg-6" >
+                <div class="portlet"><!-- /primary heading -->
+                    <div class="portlet-heading">
+                        <h3 class="portlet-title text-dark text-uppercase">
+                            Monthly Task Report
+                        </h3>
+                        <div class="portlet-widgets">
+                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                            <span class="divider"></span>
+                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2"><i class="ion-minus-round"></i></a>
+                            <span class="divider"></span>
+                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div id="portlet2" class="panel-collapse collapse in">
+                        <div class="portlet-body">
+                            <div id="morris-line-example" style="height: 200px;"></div>
+                        </div>
+                    </div>
+                </div> <!-- /Portlet -->
+            </div>
+            <div class="col-lg-6">
+            <!--<div class="tile-stats white-bg">
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="status m-b-15">
@@ -263,31 +296,7 @@
                             <span class="sparkpie-big"><canvas width="98" height="50" style="display: inline-block; width: 98px; height: 50px; vertical-align: top;"></canvas></span>
                         </div>
                     </div>
-                </div>
-            </div> <!-- end col -->
-        </div>
-        <div class="row">
-            <div class="col-lg-6" >
-                <div class="portlet"><!-- /primary heading -->
-                    <div class="portlet-heading">
-                        <h3 class="portlet-title text-dark text-uppercase">
-                            Monthly Task Report
-                        </h3>
-                        <div class="portlet-widgets">
-                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
-                            <span class="divider"></span>
-                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2"><i class="ion-minus-round"></i></a>
-                            <span class="divider"></span>
-                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div id="portlet2" class="panel-collapse collapse in">
-                        <div class="portlet-body">
-                            <div id="morris-line-example" style="height: 200px;"></div>
-                        </div>
-                    </div>
-                </div> <!-- /Portlet -->
+                </div>-->
             </div>
         </div> <!-- End row -->
 
@@ -337,6 +346,8 @@
          Counter Up
          =============================================== */
         jQuery(document).ready(function($) {
+
+            jQuery("#no-weekly-data").toggle();
             jQuery("#todo-toggle-view").toggle();
             jQuery('#todo-toggle-date').click(function () {
                 jQuery("#todo-toggle-view").toggle("slideIn");

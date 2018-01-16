@@ -70,14 +70,24 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-
-        $this->validate($request, [
+        /*$this->validate($request, [
             'name' => 'required',
             'phone' => 'required|regex:/(0)[0-9]{10}/',
             'email' => 'required|email',
-        ]);
+        ]);*/
 
 //        dd($request->all());
+        if ($request->has('avatar')) {
+
+            $upload = new Uploads();
+            $upload->upload($request->avatar);
+
+            Auth::user()->update([
+                'avatar' => $upload->getName()
+            ]);
+            return response()->json($upload->getName());
+        }
+
         if ($request->password != null) {
             if ($request->password != $request->confirm) {
                 Session::flash('error', 'Incorrect confirm password!');
@@ -99,18 +109,11 @@ class UserController extends Controller
                 'bio' => $request->bio
             ]);
         }
-        if ($request->has('avatar')) {
 
-            $upload = new Uploads();
-            $upload->upload($request->avatar);
 
-            Auth::user()->update([
-               'avatar' => $upload->getName()
-            ]);
-        }
-
-        Session::flash('message', 'Profile Updated!');
-        return \redirect()->route('user.profile', strtolower(urlencode(Auth::user()->name)));
+        return response()->json(Auth::user());
+        // Session::flash('message', 'Profile Updated!');
+        // return \redirect()->route('user.profile', strtolower(urlencode(Auth::user()->name)));
     }
 
     public function redirectToProvider($provider)

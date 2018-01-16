@@ -197,20 +197,24 @@
             <!-- user login dropdown start-->
             <li class="dropdown text-center">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                    <img alt="" src="{{ Auth::user()->avatar }}" class="img-circle profile-img thumb-sm">
+                    <img alt="" src="{{ Auth::user()->avatar }}" class="img-circle profile-img preview_image thumb-sm">
                     <span class="username">{{ Auth::user()->name }}</span> <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003"
                     style="overflow: hidden; outline: none;">
+                    <li><a href="javascript:changeProfile()"><i class="ion-edit"></i> Change Pic</a></li>
                     <li><a href="{{ route('user.profile') }}"><i class="fa fa-briefcase"></i>Profile</a></li>
-                    {{--                    <li><a href="{{ route('user.profile') }}"><i class="fa fa-cog"></i> Settings</a></li>--}}
-                    <li><a href="{{ route('logout') }}"
+                    <li>
+                        <a href="{{ route('logout') }}"
                            onclick="event.preventDefault();document.getElementById('logout-form2').submit();">
                             <i class="fa fa-sign-out"></i> Log Out
                             <form id="logout-form2" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
-                        </a></li>
+                        </a>
+                    </li>
+                    <input type="file" id="file" style="display: none"/>
+                    <input type="hidden" id="file_name"/>
                 </ul>
             </li>
             <!-- user login dropdown end -->
@@ -350,7 +354,43 @@
             });
         })
     });
-</script>
+    function changeProfile() {
+        $('#file').click();
+    }
+    $('#file').change(function () {
+        if ($(this).val() != '') {
+            upload(this);
+        }
+    });
+    function upload(img) {
+//        console.log(img);
+        var form_data = new FormData();
+        form_data.append('avatar', img.files[0]);
+        form_data.append('_token', '{{csrf_token()}}');
+        $('#loading').css('display', 'block');
+//        console.log(form_data)
+        $.ajax({
+            url: '{{ route('user.update') }}',
+            data: form_data,
+            type: 'POST',
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data.fail) {
+                    alert(data.errors['file']);
+                }
+                else {
+                    console.log('{{asset('uploads')}}/' + data)
+                    $('#file_name').val(data);
+                    $('.preview_image').attr('src', data);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+                $('.preview_image').attr('src', '{{asset('images/noimage.jpg')}}');
+            }
+        });
+    }</script>
 
 
 </body>

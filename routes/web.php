@@ -5,11 +5,24 @@ Route::get('/', [
     'as' => 'welcome'
 ]);
 
+Route::get('/policy', function (){
+    return view('policy');
+});
+
+Route::get('/terms', function (){
+    return view('terms');
+});
+
+Route::get('/support', function (){
+    return view('support');
+});
+
 Route::get('/clear', function (){
     Artisan::call('config:cache');
     Artisan::call('cache:clear');
     Artisan::call('view:clear');
     Artisan::call('route:clear');
+    echo 'clear';
 });
 
 Route::get('register', [
@@ -95,9 +108,19 @@ Route::group(['middleware' => 'auth'], function () {
             'uses' => 'TaskController@assign'
         ]);
 
+        Route::post('undone/{task}', [
+            'as' => 'task.undone',
+            'uses' => 'TaskController@undone'
+        ]);
+
         Route::post('complete', [
             'as' => 'task.complete',
             'uses' => 'TaskController@complete'
+        ]);
+
+        Route::post('updateAvatar', [
+            'as' => 'user.avatar',
+            'uses' => 'UserController@updateAvatar'
         ]);
 
         Route::post('/update', [
