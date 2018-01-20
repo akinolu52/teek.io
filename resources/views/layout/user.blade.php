@@ -7,14 +7,26 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    {{--<link rel="shortcut icon" href="img/favicon_1.ico">--}}
-
-
     <title>Teek - @yield('title')</title>
 
     <!-- Google-Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,700,900,400italic'
-          rel='stylesheet'>
+    {{--<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,300,400,600,700,900,400italic'
+          rel='stylesheet'>--}}
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans%7CLato:400,600,900" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('images/icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('images/icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('/manifest.json') }}">
+    <link rel="mask-icon" href="{{ asset('/safari-pinned-tab.svg" color="#5bbad5') }}">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('auth/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -58,8 +70,8 @@
     <!-- brand -->
     <div class="logo">
         <a href="{{ route('welcome') }}" class="logo-expanded">
-            {{--<img src="img/single-logo.png" alt="logo">--}}
-            <span class="nav-label">Teek</span>
+            {{--<img src="{{ asset('images/logo.png') }}" alt="logo">--}}
+            <span class="nav-label m-l-10">Teek</span>
         </a>
     </div>
     <!-- / brand -->
@@ -161,7 +173,7 @@
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="fa fa-bell-o"></i>
                             <span class="badge badge-sm up bg-pink count noti-count"
-                                  data-value="{{ $userNotifyCount }}">{{ $userNotifyCount }}</span>
+                                                                                                         data-value="{{ $userNotifyCount }}">{{ $userNotifyCount }}</span>
                         </a>
                         <ul class="dropdown-menu extended fadeInUp animated nicescroll" tabindex="5002">
                             <li class="noti-header">
